@@ -8,10 +8,6 @@ class TestGalacticSpaceCraft < Minitest::Test
     assert_equal 'N', spacecraft.direction
   end
 
-  
-
-
-
  def test_move_forward_north
     spacecraft = GalacticSpaceCraft.new([0, 0, 0], 'N')
     spacecraft.move_forward
