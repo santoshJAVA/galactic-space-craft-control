@@ -4,6 +4,7 @@ class GalacticSpaceCraft
   def initialize(starting_position, initial_direction)
     @position = starting_position
     @direction = initial_direction
+    @previous_direction = nil
   end
 
   def move_forward
@@ -29,27 +30,53 @@ class GalacticSpaceCraft
   end
 
   def turn_left
-    case @direction
-    when 'N' then @direction = 'W'
-    when 'S' then @direction = 'E'
-    when 'E' then @direction = 'N'
-    when 'W' then @direction = 'S'
+    if @direction == 'U' || @direction == 'D'
+      # If current direction is 'U' or 'D', use the previous direction
+      case @previous_direction
+      when 'N' then @direction = 'W'
+      when 'S' then @direction = 'E'
+      when 'E' then @direction = 'N'
+      when 'W' then @direction = 'S'
+      end
+    else
+      # If not 'U' or 'D', normal turning left logic
+      case @direction
+      when 'N' then @direction = 'W'
+      when 'S' then @direction = 'E'
+      when 'E' then @direction = 'N'
+      when 'W' then @direction = 'S'
+      end
+      @previous_direction = @direction
     end
   end
 
   def turn_right
-    case @direction
-    when 'N' then @direction = 'E'
-    when 'S' then @direction = 'W'
-    when 'E' then @direction = 'S'
-    when 'W' then @direction = 'N'
+    if @direction == 'U' || @direction == 'D'
+      # If current direction is 'U' or 'D', use the previous direction
+      case @previous_direction
+      when 'N' then @direction = 'E'
+      when 'S' then @direction = 'W'
+      when 'E' then @direction = 'S'
+      when 'W' then @direction = 'N'
+      end
+    else
+      # If not 'U' or 'D', normal turning right logic
+      case @direction
+      when 'N' then @direction = 'E'
+      when 'S' then @direction = 'W'
+      when 'E' then @direction = 'S'
+      when 'W' then @direction = 'N'
+      end
+      @previous_direction = @direction
     end
   end
 
   def turn_up
+    @direction = 'U'
   end
 
   def turn_down
+    @direction = 'D'
   end
 
   def execute_commands(commands)
@@ -63,5 +90,7 @@ class GalacticSpaceCraft
       when 'd' then turn_down
       end
     end
+
+    { position: @position, direction: @direction }
   end
 end
