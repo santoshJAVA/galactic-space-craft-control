@@ -83,14 +83,62 @@ class TestGalacticSpaceCraft < Minitest::Test
     spacecraft.move_backward
     assert_equal [0, 0, 1], spacecraft.position
   end
-  
 
-  def test_turn_left
 
+  def test_turn_left_from_north
+    spacecraft = GalacticSpaceCraft.new([0, 0, 0], 'N')
+    spacecraft.turn_left
+    assert_equal 'W', spacecraft.direction
+    assert_equal [0, 0, 0], spacecraft.position
   end
 
-  def test_turn_right
+  def test_turn_left_from_south
+    spacecraft = GalacticSpaceCraft.new([0, 0, 0], 'S')
+    spacecraft.turn_left
+    assert_equal 'E', spacecraft.direction
+    assert_equal [0, 0, 0], spacecraft.position
+  end
 
+  def test_turn_left_from_east
+    spacecraft = GalacticSpaceCraft.new([0, 0, 0], 'E')
+    spacecraft.turn_left
+    assert_equal 'N', spacecraft.direction
+    assert_equal [0, 0, 0], spacecraft.position
+  end
+
+  def test_turn_left_from_west
+    spacecraft = GalacticSpaceCraft.new([0, 0, 0], 'W')
+    spacecraft.turn_left
+    assert_equal 'S', spacecraft.direction
+    assert_equal [0, 0, 0], spacecraft.position
+  end
+
+  def test_turn_right_from_north
+    spacecraft = GalacticSpaceCraft.new([0, 0, 0], 'N')
+    spacecraft.turn_right
+    assert_equal 'E', spacecraft.direction
+    assert_equal [0, 0, 0], spacecraft.position
+  end
+
+  def test_turn_right_from_south
+    spacecraft = GalacticSpaceCraft.new([0, 0, 0], 'S')
+    spacecraft.turn_right
+    assert_equal 'W', spacecraft.direction
+    assert_equal [0, 0, 0], spacecraft.position
+  end
+
+  def test_turn_right_from_east
+    spacecraft = GalacticSpaceCraft.new([0, 0, 0], 'E')
+    spacecraft.turn_right
+    assert_equal 'S', spacecraft.direction
+    assert_equal [0, 0, 0], spacecraft.position
+  end
+
+  def test_turn_right_from_west
+    spacecraft = GalacticSpaceCraft.new([0, 0, 0], 'W')
+    spacecraft.turn_right
+    assert_equal 'N', spacecraft.direction
+    assert_equal [0, 0, 0], spacecraft.position
   end
 
   def test_turn_up

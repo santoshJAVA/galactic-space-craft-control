@@ -29,9 +29,21 @@ class GalacticSpaceCraft
   end
 
   def turn_left
+    case @direction
+    when 'N' then @direction = 'W'
+    when 'S' then @direction = 'E'
+    when 'E' then @direction = 'N'
+    when 'W' then @direction = 'S'
+    end
   end
 
   def turn_right
+    case @direction
+    when 'N' then @direction = 'E'
+    when 'S' then @direction = 'W'
+    when 'E' then @direction = 'S'
+    when 'W' then @direction = 'N'
+    end
   end
 
   def turn_up
